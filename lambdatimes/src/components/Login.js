@@ -12,9 +12,10 @@ const LoginBtn = styled.div`
   font-weight: bold;
 `;
 
-const Login= () => {
+const Login = props => {
     const [popoverOpen, setPopoverOpen] = useState(false)
     const [username, setUsername] = useState(localStorage.getItem('user_name') || '');
+    const [loginText, setLoginText] = useState(props.loginFlag ? localStorage.getItem('user_name') : 'Login')
 
     const handleUser = e => {
         e.preventDefault();
@@ -23,33 +24,40 @@ const Login= () => {
 
       const handleSubmit = e => {
         // e.preventDefault();
-        console.log(username)
         localStorage.setItem('user_name', username);
         updatePage()
       }
+      const handleLogut = e => {
+        localStorage.removeItem('user_name');
+        window.location.reload(); 
+    }
 
     const updatePage = () => {
         let x = localStorage.getItem('user_name');
-        // alert(x)
     }
 
     useEffect(() => {
         return () => console.log('unmounting...');
     })
 
-
+    const isLoggedIn = props.loginFlag;
     const toggle = () => {setPopoverOpen(!popoverOpen)}
+
 
     return (
         <div>
             
-            <LoginBtn id="Popover1" onClick={toggle} >
-                Log In
+            <LoginBtn id="Popover1" onClick={toggle}>
+                {/* {loginText} */}
+                <b>{isLoggedIn ? localStorage.getItem('user_name') : 'Login'}</b>
             </LoginBtn>
             <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle}>
                 <PopoverHeader>Lambda Times</PopoverHeader>
                 <PopoverBody>
-                    <Form onSubmit={handleSubmit}>
+                    {isLoggedIn ? (
+                        <Button onClick={handleLogut}>Log Out</Button>
+                    ) : (
+                        <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Label for="inputUsername" hidden>Username</Label>
                             <Input type="username" bsSize="sm" name="username" id="inputUsername" placeholder="Username" onChange={handleUser}/>
@@ -60,7 +68,10 @@ const Login= () => {
                             <Input type="password" bsSize="sm" name="password" id="inputPassword" placeholder="Password" />
                         </FormGroup>
                         <Button type='submit'>Sign in</Button>
-                    </Form>
+                        </Form>
+                    )}
+
+
                 </PopoverBody>
             </Popover>
       </div>

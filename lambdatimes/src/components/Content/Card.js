@@ -16,7 +16,7 @@ const Headline = styled.div`
 
 const Card = props => {
   const [modal, setModal] = useState(false)
-  
+
   const toggle = () => {
     props.loggedIn ? setModal(!modal) : console.log('login')
     

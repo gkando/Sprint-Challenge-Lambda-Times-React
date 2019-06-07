@@ -10,17 +10,21 @@ const withAuthenticate = Content => TopBar => Header =>
     }
     // localStorage.setItem('user_name', username);
     componentDidMount() {
-      if (!localStorage.getItem('user_name')) {
-        this.setState({ loggedIn: false });
-      } else {
-        this.setState({ loggedIn: true });
+
+
+        if (!localStorage.getItem('user_name')) {
+          this.setState({ loggedIn: false });
+
+        } else {
+          this.setState({ loggedIn: true });
       }
     }
+      
     render() {
       if (this.state.loggedIn) {
-          return <> <TopBar /> <Header /> <Content /> </>
+          return <> <TopBar loginFlag={this.state.loggedIn} /> <Header /> <Content loginFlag={this.state.loggedIn} /> </>
       } else {
-          return <> <TopBar /> <Header /> <Content loggedIn={this.state.loggedIn} />  </>
+          return <> <TopBar loginFlag={this.state.loggedIn} /> <Header /> <Content loginFlag={this.state.loggedIn} />  </>
         }
 
     }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Tabs from './Tabs';
 import Cards from './Cards';
+import PropTypes from "prop-types";
+
 
 // Importing our tab and card data. No need to change anything here.
 import { tabData, cardData } from '../../data';
@@ -9,7 +11,6 @@ function Content(props) {
   const [selected, setSelected] = useState('all')
   const [tabs, setTabs] = useState([])
   const [cards, setCards] = useState([])
-  const [login, setLogin] = useState()
 
   useEffect(() => {
     setTabs(tabData);
@@ -21,7 +22,7 @@ function Content(props) {
   };
 
   const filterCards = () => {
-    // delete cards['article'];
+    
     if (selected === 'all') {
           return cards
         }
@@ -30,16 +31,21 @@ function Content(props) {
     }
 
   };
+
+
     return (
       <div className="content-container">
         <Tabs tabs={tabs} selectedTab={selected} selectTabHandler={changeSelected} />
-        <Cards cards={filterCards()} loggedIn={props.loggedIn} />
+        <Cards cards={filterCards()} loginFlag={props.loginFlag}/>
       </div>
     );
 }
 
 export default Content;
 
+Content.propTypes = {
+  loggedIn: PropTypes.bool
+};
 
 // export default class Content extends Component {
 //   constructor(props) {

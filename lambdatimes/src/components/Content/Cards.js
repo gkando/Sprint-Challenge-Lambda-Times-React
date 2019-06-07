@@ -3,12 +3,11 @@ import Card from './Card';
 import PropTypes from "prop-types";
 
 const Cards = props => {
-
   return (
     <div className="cards-container">
       {props.cards.map((card, index) => {
         return (
-          <Card card={card} key={index} loggedIn={props.loggedIn} />
+          <Card card={card} key={index} loggedIn={props.loginFlag} />
         )
       })}
 
