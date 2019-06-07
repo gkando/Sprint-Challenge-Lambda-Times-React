@@ -5,22 +5,23 @@ import Cards from './Cards';
 // Importing our tab and card data. No need to change anything here.
 import { tabData, cardData } from '../../data';
 
-function Content() {
+function Content(props) {
   const [selected, setSelected] = useState('all')
   const [tabs, setTabs] = useState([])
   const [cards, setCards] = useState([])
+  const [login, setLogin] = useState()
 
   useEffect(() => {
     setTabs(tabData);
     setCards(cardData);
   }, [])
 
-    const changeSelected = tab => {
+  const changeSelected = tab => {
     setSelected(tab)
   };
 
   const filterCards = () => {
-
+    // delete cards['article'];
     if (selected === 'all') {
           return cards
         }
@@ -29,14 +30,12 @@ function Content() {
     }
 
   };
-
     return (
       <div className="content-container">
         <Tabs tabs={tabs} selectedTab={selected} selectTabHandler={changeSelected} />
-        <Cards cards={filterCards()} />
+        <Cards cards={filterCards()} loggedIn={props.loggedIn} />
       </div>
     );
-
 }
 
 export default Content;

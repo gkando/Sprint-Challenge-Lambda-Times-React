@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Login from './Login';
 
 const TopBarMain = styled.div`
   width: 100%;
@@ -95,7 +96,7 @@ const TopBar = () => {
           <ContainerCenterSpan>ANNOUNCEMENTS</ContainerCenterSpan>
         </ContainerCenter>
         <ContainerRight>
-          <ContainerRightSpan>LOG IN</ContainerRightSpan>
+          <ContainerRightSpan><Login></Login></ContainerRightSpan>
         </ContainerRight>
       </TopBarContainer>
     </TopBarMain>
