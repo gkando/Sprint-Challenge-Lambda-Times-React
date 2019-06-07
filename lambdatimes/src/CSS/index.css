@@ -314,3 +314,25 @@ body {
   width: 100%;
   display: none;
 }
+
+.modal-article {
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+.modal-title{
+  font-size: 2.5rem;
+  line-height: 3.25rem !important;
+}
+
+.modal-content{
+  padding: 0 40px;
+}
+
+.byline{
+  font-size: .8rem;
+  line-height: 12px;
+  color: #333;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
